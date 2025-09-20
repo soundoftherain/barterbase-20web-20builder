@@ -44,7 +44,7 @@ export default function Index() {
                 <h3 className="text-lg font-semibold">EMP Protection</h3>
               </div>
               <p className="mt-3 text-sm text-muted-foreground">
-                Hardware and protocols to harden communications and keep the network online when the grid fails.
+                Harden devices and comms from EMP events and solar flares; keep your signals online.
               </p>
             </CardContent>
           </Card>
@@ -56,7 +56,7 @@ export default function Index() {
                 <h3 className="text-lg font-semibold">Prepper Marketplace</h3>
               </div>
               <p className="mt-3 text-sm text-muted-foreground">
-                Buy, sell, and barter supplies with crypto payments and peer-to-peer settlement.
+                Seeds, food-prep, gear—buy, sell, and barter with crypto and local-first delivery.
               </p>
             </CardContent>
           </Card>
@@ -68,7 +68,7 @@ export default function Index() {
                 <h3 className="text-lg font-semibold">Tokenized Land</h3>
               </div>
               <p className="mt-3 text-sm text-muted-foreground">
-                Fractionalize physical land as NFTs to fund community shelters and comms hubs.
+                Own fractions of off-grid land as NFTs, funding shelters and resilient hubs.
               </p>
             </CardContent>
           </Card>
@@ -78,16 +78,21 @@ export default function Index() {
       <section className="container py-16">
         <div className="grid items-center gap-8 md:grid-cols-2">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Built for the Prepper + Crypto community</h2>
+            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Local-first. Globally connected.</h2>
             <p className="mt-3 text-muted-foreground">
-              We accept crypto for everything—gear, services, and governance. Your holdings empower a marketplace that stays online when it matters most.
+              Local merchants sell to their neighbors for fast delivery and strong communities—while tapping a global DAO for guidance and fundraising infrastructure.
             </p>
+            <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-muted-foreground">
+              <li>Seeds & food preparation</li>
+              <li>EMP device shielding</li>
+              <li>Satellite phones & off-grid internet</li>
+            </ul>
             <div className="mt-6 flex gap-3">
               <Button asChild>
                 <Link to="/buy-tokens">Get BBD</Link>
               </Button>
               <Button asChild variant="outline" className="border-white/20">
-                <a href="#features">Explore features</a>
+                <a href="#videos">Watch videos</a>
               </Button>
             </div>
           </div>
@@ -112,6 +117,8 @@ export default function Index() {
           </div>
         </div>
       </section>
+
+      <PromoVideos />
     </div>
   );
 }
