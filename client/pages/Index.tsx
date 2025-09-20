@@ -16,7 +16,7 @@ export default function Index() {
             BarterBase DAO
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-balance text-muted-foreground">
-            A dark, resilient marketplace and token economy powering EMP protection, prepper trade, and tokenized land. Stay connected. Stay sovereign.
+            A decentralized marketplace for buying, selling, and bartering: seeds, food-prep supplies, EMP device protection, and satellite comms. We connect local merchants to local buyers—and a global DAO for education and funding. Tokenize land and knowledge NFTs. Stay connected. Stay sovereign.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button asChild size="lg" className="px-8">
