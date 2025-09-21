@@ -15,19 +15,29 @@ export default function Index() {
       <section className="relative container min-h-[70vh] py-16 md:py-28 flex items-center">
         <div className="mx-auto max-w-3xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
-            <Radio className="size-3.5 text-primary" /> EMP-resilient connectivity for preppers
+            <Radio className="size-3.5 text-primary" /> EMP-resilient
+            connectivity for preppers
           </div>
           <h1 className="mt-5 text-4xl font-extrabold tracking-tight md:text-6xl">
             BarterBase DAO
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-balance text-muted-foreground">
-            A decentralized marketplace for buying, selling, and bartering: seeds, food-prep supplies, EMP device protection, and satellite comms. We connect local merchants to local buyers—and a global DAO for education and funding. Tokenize land and knowledge NFTs. Stay connected. Stay sovereign.
+            A decentralized marketplace for buying, selling, and bartering:
+            seeds, food-prep supplies, EMP device protection, and satellite
+            comms. We connect local merchants to local buyers—and a global DAO
+            for education and funding. Tokenize land and knowledge NFTs. Stay
+            connected. Stay sovereign.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button asChild size="lg" className="px-8">
               <Link to="/buy-tokens">Buy Tokens – Phase One</Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="border-white/20 bg-transparent">
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="border-white/20 bg-transparent"
+            >
               <a href="#features">Learn more</a>
             </Button>
           </div>
@@ -48,7 +58,8 @@ export default function Index() {
                 <h3 className="text-lg font-semibold">EMP Protection</h3>
               </div>
               <p className="mt-3 text-sm text-muted-foreground">
-                Harden devices and comms from EMP events and solar flares; keep your signals online.
+                Harden devices and comms from EMP events and solar flares; keep
+                your signals online.
               </p>
             </CardContent>
           </Card>
@@ -60,7 +71,8 @@ export default function Index() {
                 <h3 className="text-lg font-semibold">Prepper Marketplace</h3>
               </div>
               <p className="mt-3 text-sm text-muted-foreground">
-                Seeds, food-prep, gear—buy, sell, and barter with crypto and local-first delivery.
+                Seeds, food-prep, gear—buy, sell, and barter with crypto and
+                local-first delivery.
               </p>
             </CardContent>
           </Card>
@@ -72,7 +84,8 @@ export default function Index() {
                 <h3 className="text-lg font-semibold">Tokenized Land</h3>
               </div>
               <p className="mt-3 text-sm text-muted-foreground">
-                Own fractions of off-grid land as NFTs, funding shelters and resilient hubs.
+                Own fractions of off-grid land as NFTs, funding shelters and
+                resilient hubs.
               </p>
             </CardContent>
           </Card>
@@ -82,9 +95,13 @@ export default function Index() {
       <section className="container py-16">
         <div className="grid items-center gap-8 md:grid-cols-2">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Local-first. Globally connected.</h2>
+            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">
+              Local-first. Globally connected.
+            </h2>
             <p className="mt-3 text-muted-foreground">
-              Local merchants sell to their neighbors for fast delivery and strong communities—while tapping a global DAO for guidance and fundraising infrastructure.
+              Local merchants sell to their neighbors for fast delivery and
+              strong communities—while tapping a global DAO for guidance and
+              fundraising infrastructure.
             </p>
             <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-muted-foreground">
               <li>Seeds & food preparation</li>
