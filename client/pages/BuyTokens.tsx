@@ -7,13 +7,13 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Coins, Shield, Wallet } from "lucide-react";
 
-const PHASE_ONE_PRICE_USD = 0.05; // USD per BART
+const TOKENS_PER_ETH = 10000; // BART per 1 ETH
 
 export default function BuyTokens() {
-  const [currency, setCurrency] = useState("USDC");
-  const [usdAmount, setUsdAmount] = useState(100);
+  const [currency, setCurrency] = useState("ETH");
+  const [ethAmount, setEthAmount] = useState(0.1);
 
-  const tokens = useMemo(() => (usdAmount > 0 ? usdAmount / PHASE_ONE_PRICE_USD : 0), [usdAmount]);
+  const tokens = useMemo(() => (ethAmount > 0 ? ethAmount * TOKENS_PER_ETH : 0), [ethAmount]);
 
   return (
     <section className="relative">
@@ -33,32 +33,22 @@ export default function BuyTokens() {
           <Card className="bg-card/70 backdrop-blur">
             <CardHeader>
               <CardTitle>Purchase</CardTitle>
-              <CardDescription>Price: ${PHASE_ONE_PRICE_USD.toFixed(2)} per BART</CardDescription>
+              <CardDescription>Price: 1 ETH = {TOKENS_PER_ETH.toLocaleString()} BART</CardDescription>
             </CardHeader>
             <CardContent className="space-y-5">
               <div className="grid gap-2">
-                <Label htmlFor="amount">Amount (USD)</Label>
+                <Label htmlFor="amount">Amount (ETH)</Label>
                 <Input
                   id="amount"
                   type="number"
                   min={0}
-                  value={usdAmount}
-                  onChange={(e) => setUsdAmount(parseFloat(e.target.value || "0"))}
+                  value={ethAmount}
+                  onChange={(e) => setEthAmount(parseFloat(e.target.value || "0"))}
                 />
               </div>
-              <div className="grid gap-2">
+              <div className="grid gap-1 text-sm">
                 <Label>Pay with</Label>
-                <Select value={currency} onValueChange={setCurrency}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select token" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="USDC">USDC</SelectItem>
-                    <SelectItem value="ETH">ETH</SelectItem>
-                    <SelectItem value="SOL">SOL</SelectItem>
-                    <SelectItem value="BTC">BTC (Lightning)</SelectItem>
-                  </SelectContent>
-                </Select>
+                <div className="rounded-md border bg-black/20 px-3 py-2 text-muted-foreground">ETH (Phase One fixed)</div>
               </div>
               <div className="rounded-md border p-3 text-sm text-muted-foreground">
                 Estimated BART: <span className="font-semibold text-foreground">{tokens.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
@@ -77,8 +67,8 @@ export default function BuyTokens() {
                     </DialogDescription>
                   </DialogHeader>
                   <ol className="list-decimal space-y-2 pl-5 text-sm">
-                    <li>Connect a supported wallet (e.g., MetaMask, Phantom, Xverse).</li>
-                    <li>Confirm payment equal to ${usdAmount.toLocaleString()} in {currency}.</li>
+                    <li>Connect a supported wallet (e.g., MetaMask).</li>
+                    <li>Confirm payment of {ethAmount} ETH.</li>
                     <li>Receive BART to your wallet after confirmation.</li>
                   </ol>
                   <div className="mt-4 text-xs text-muted-foreground">
