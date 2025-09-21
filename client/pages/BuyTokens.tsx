@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Coins, Shield, Wallet } from "lucide-react";
 
-const PHASE_ONE_PRICE_USD = 0.05; // USD per BBD
+const PHASE_ONE_PRICE_USD = 0.05; // USD per BART
 
 export default function BuyTokens() {
   const [currency, setCurrency] = useState("USDC");
@@ -22,7 +22,10 @@ export default function BuyTokens() {
         <div className="max-w-3xl">
           <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight">Phase One Token Sale</h1>
           <p className="mt-4 text-muted-foreground">
-            Acquire BBD (BarterBase DAO) tokens. Designed to power a prepper-first marketplace, land tokenization, and EMP-resilient infrastructure.
+            Acquire BART (BarterBase DAO) tokens. Designed to power a prepper-first marketplace, land tokenization, and EMP-resilient infrastructure.
+          </p>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Ticker: BART · Total Supply: 50,000,000 BART
           </p>
         </div>
 
@@ -30,7 +33,7 @@ export default function BuyTokens() {
           <Card className="bg-card/70 backdrop-blur">
             <CardHeader>
               <CardTitle>Purchase</CardTitle>
-              <CardDescription>Price: ${PHASE_ONE_PRICE_USD.toFixed(2)} per BBD</CardDescription>
+              <CardDescription>Price: ${PHASE_ONE_PRICE_USD.toFixed(2)} per BART</CardDescription>
             </CardHeader>
             <CardContent className="space-y-5">
               <div className="grid gap-2">
@@ -58,7 +61,7 @@ export default function BuyTokens() {
                 </Select>
               </div>
               <div className="rounded-md border p-3 text-sm text-muted-foreground">
-                Estimated BBD: <span className="font-semibold text-foreground">{tokens.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
+                Estimated BART: <span className="font-semibold text-foreground">{tokens.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
               </div>
               <Dialog>
                 <DialogTrigger asChild>
@@ -76,7 +79,7 @@ export default function BuyTokens() {
                   <ol className="list-decimal space-y-2 pl-5 text-sm">
                     <li>Connect a supported wallet (e.g., MetaMask, Phantom, Xverse).</li>
                     <li>Confirm payment equal to ${usdAmount.toLocaleString()} in {currency}.</li>
-                    <li>Receive BBD to your wallet after confirmation.</li>
+                    <li>Receive BART to your wallet after confirmation.</li>
                   </ol>
                   <div className="mt-4 text-xs text-muted-foreground">
                     Subject to jurisdictional restrictions. This UI does not execute transactions—integrate your preferred on-chain sale contract or provider.
@@ -88,7 +91,7 @@ export default function BuyTokens() {
 
           <Card className="bg-card/70 backdrop-blur">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2"><Shield className="size-5 text-primary" /> Why BBD?</CardTitle>
+              <CardTitle className="flex items-center gap-2"><Shield className="size-5 text-primary" /> Why BART?</CardTitle>
               <CardDescription>Utility-first, prepper-focused network</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4 text-sm text-muted-foreground">
