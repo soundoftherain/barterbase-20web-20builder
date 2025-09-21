@@ -92,7 +92,7 @@ export default function Index() {
             </ul>
             <div className="mt-6 flex gap-3">
               <Button asChild>
-                <Link to="/buy-tokens">Get BBD</Link>
+                <Link to="/buy-tokens">Get BART</Link>
               </Button>
               <Button asChild variant="outline" className="border-white/20">
                 <a href="#videos">Watch videos</a>
