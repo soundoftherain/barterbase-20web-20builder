@@ -7,10 +7,10 @@ import PromoVideos from "@/components/marketing/PromoVideos";
 export default function Index() {
   return (
     <div className="relative">
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute -top-40 left-1/2 h-[60vh] w-[120vw] -translate-x-1/2 rounded-[999px] bg-emerald-400/25 blur-3xl" />
-        <div className="absolute bottom-0 right-0 h-[40vh] w-[70vw] rounded-[999px] bg-emerald-500/15 blur-2xl" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/40 to-background" />
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <div className="absolute left-1/2 top-[-10vh] h-[100vh] w-[160vh] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(16,185,129,0.55),rgba(16,185,129,0.18),transparent_70%)] blur-3xl" />
+        <div className="absolute right-[-20vw] top-[10vh] h-[60vh] w-[60vh] rounded-full bg-[conic-gradient(from_180deg,rgba(16,185,129,0.4),transparent_60%)] blur-2xl" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/10 to-background/90" />
       </div>
       <section className="relative container min-h-[70vh] py-16 md:py-28 flex items-center">
         <div className="mx-auto max-w-3xl text-center">
