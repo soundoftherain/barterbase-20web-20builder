@@ -51,7 +51,7 @@ export default function BuyTokens() {
                 <div className="rounded-md border bg-black/20 px-3 py-2 text-muted-foreground">ETH (Phase One fixed)</div>
               </div>
               <div className="rounded-md border p-3 text-sm text-muted-foreground">
-                Estimated BART: <span className="font-semibold text-foreground">{tokens.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
+                Estimated BART: <span className="font-semibold text-foreground">{tokens.toLocaleString("en-US", { maximumFractionDigits: 0 })}</span>
               </div>
               <Dialog>
                 <DialogTrigger asChild>
