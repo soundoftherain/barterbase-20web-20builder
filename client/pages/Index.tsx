@@ -8,13 +8,9 @@ export default function Index() {
   return (
     <div className="relative">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[conic-gradient(from_210deg_at_50%_35%,rgba(64,255,151,0.35),transparent_60%),radial-gradient(ellipse_at_top,rgba(64,255,151,0.18),transparent_60%),radial-gradient(ellipse_at_bottom,rgba(64,255,151,0.10),transparent_60%)]" />
-        <img
-          src="https://images.pexels.com/photos/31987246/pexels-photo-31987246.jpeg"
-          alt="Solar plasma flare"
-          className="absolute inset-0 h-full w-full object-cover opacity-35 mix-blend-screen"
-          referrerPolicy="no-referrer"
-        />
+        <div className="absolute -top-40 left-1/2 h-[60vh] w-[120vw] -translate-x-1/2 rounded-[999px] bg-emerald-400/25 blur-3xl" />
+        <div className="absolute bottom-0 right-0 h-[40vh] w-[70vw] rounded-[999px] bg-emerald-500/15 blur-2xl" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/40 to-background" />
       </div>
       <section className="relative container min-h-[70vh] py-16 md:py-28 flex items-center">
         <div className="mx-auto max-w-3xl text-center">
