@@ -25,8 +25,9 @@ export default function Index() {
             A decentralized marketplace for buying, selling, and bartering:
             seeds, food-prep supplies, EMP device protection, and satellite
             comms. We connect local merchants to local buyers—and a global DAO
-            for education and funding. Tokenize land and knowledge NFTs. Stay
-            connected. Stay sovereign.
+            for education and funding. Tokenize land and knowledge NFTs. We will
+            also sell survival information books as NFTs for verifiable ownership
+            and community funding. Stay connected. Stay sovereign.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button asChild size="lg" className="px-8">
