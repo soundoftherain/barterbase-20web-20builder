@@ -33,7 +33,7 @@ export default function BuyTokens() {
           <Card className="bg-card/70 backdrop-blur">
             <CardHeader>
               <CardTitle>Purchase</CardTitle>
-              <CardDescription>Price: 1 ETH = {TOKENS_PER_ETH.toLocaleString()} BART</CardDescription>
+              <CardDescription>Price: 1 ETH = {TOKENS_PER_ETH.toLocaleString("en-US")} BART</CardDescription>
             </CardHeader>
             <CardContent className="space-y-5">
               <div className="grid gap-2">
