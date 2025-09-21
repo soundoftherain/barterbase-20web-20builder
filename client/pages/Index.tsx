@@ -7,7 +7,15 @@ import PromoVideos from "@/components/marketing/PromoVideos";
 export default function Index() {
   return (
     <div className="relative">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_left,rgba(64,255,151,0.10),transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(64,255,151,0.06),transparent_50%)]" />
+      <div className="absolute inset-0 -z-10">
+        <img
+          src="https://images.pexels.com/photos/31987246/pexels-photo-31987246.jpeg"
+          alt="Solar plasma flare"
+          className="h-full w-full object-cover opacity-60"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-background" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(64,255,151,0.10),transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(64,255,151,0.06),transparent_50%)]" />
+      </div>
       <section className="container py-16 md:py-28">
         <div className="mx-auto max-w-3xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
