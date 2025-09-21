@@ -7,17 +7,9 @@ import PromoVideos from "@/components/marketing/PromoVideos";
 export default function Index() {
   return (
     <div className="relative">
-      <div className="absolute inset-0 -z-10">
-        <picture>
-          <source media="(max-width: 640px)" srcSet="https://images.pexels.com/photos/15751851/pexels-photo-15751851.jpeg" />
-          <img
-            src="https://images.pexels.com/photos/31987246/pexels-photo-31987246.jpeg"
-            alt="Solar plasma flare"
-            className="h-full w-full object-cover opacity-90 saturate-150 contrast-125"
-          />
-        </picture>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-background/80" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(64,255,151,0.18),transparent_55%),radial-gradient(ellipse_at_bottom_right,rgba(64,255,151,0.10),transparent_55%)]" />
+      <div className="absolute inset-0 -z-10 bg-[url('https://images.pexels.com/photos/31987246/pexels-photo-31987246.jpeg')] bg-cover bg-center">
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(64,255,151,0.25),transparent_55%),radial-gradient(ellipse_at_bottom_right,rgba(64,255,151,0.12),transparent_55%)]" />
       </div>
       <section className="relative container min-h-[70vh] py-16 md:py-28 flex items-center">
         <div className="mx-auto max-w-3xl text-center">
