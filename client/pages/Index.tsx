@@ -19,7 +19,7 @@ export default function Index() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-background/80" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(64,255,151,0.18),transparent_55%),radial-gradient(ellipse_at_bottom_right,rgba(64,255,151,0.10),transparent_55%)]" />
       </div>
-      <section className="container py-16 md:py-28">
+      <section className="relative container min-h-[70vh] py-16 md:py-28 flex items-center">
         <div className="mx-auto max-w-3xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
             <Radio className="size-3.5 text-primary" /> EMP-resilient connectivity for preppers
