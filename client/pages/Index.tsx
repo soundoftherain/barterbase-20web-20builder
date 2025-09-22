@@ -8,7 +8,11 @@ export default function Index() {
   return (
     <div className="relative">
       <div className="absolute inset-0 -z-10">
-        <img src="/plasma.svg" alt="Energy plasma background" className="h-full w-full object-cover opacity-80" />
+        <img
+          src="/plasma.svg"
+          alt="Energy plasma background"
+          className="h-full w-full object-cover opacity-80"
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/20 to-background/90" />
       </div>
       <section className="relative container min-h-[70vh] py-16 md:py-28 flex items-center">
@@ -25,8 +29,8 @@ export default function Index() {
             seeds, food-prep supplies, EMP device protection, and satellite
             comms. We connect local merchants to local buyers—and a global DAO
             for education and funding. Tokenize land and knowledge NFTs. We will
-            also sell survival information books as NFTs for verifiable ownership
-            and community funding. Stay connected. Stay sovereign.
+            also sell survival information books as NFTs for verifiable
+            ownership and community funding. Stay connected. Stay sovereign.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button asChild size="lg" className="px-8">
