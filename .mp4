@@ -1,29 +1,40 @@
-<!-- HORIZONTAL VIDEO GALLERY -->
-<section style="padding:40px 12px;background:#071014;color:#fff;">
-  <div style="max-width:1100px;margin:0 auto;">
-    <h2 style="text-align:center;margin-bottom:18px;">Product Videos</h2>
+<!-- FEATURED PLAYER + THUMBNAILS -->
+<section style="padding:30px;background:#071014;color:#fff;">
+  <div style="max-width:1000px;margin:0 auto;">
+    <video id="featured" controls style="width:100%;height:auto;border-radius:10px;">
+      <source src="videos/emp-protection.mp4" type="video/mp4">
+      Your browser does not support video.
+    </video>
 
-    <div style="display:flex;gap:18px;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x mandatory;">
-      <!-- card 1 -->
-      <div style="min-width:320px;flex-shrink:0;scroll-snap-align:start;">
-        <video controls width="320" height="180" style="width:100%;border-radius:8px;">
-          <source src="videos/emp-protection.mp4" type="video/mp4">
-        </video>
-        <strong style="display:block;margin-top:8px">EMP Protection</strong>
-        <small style="color:#bbb">Demo and test results</small>
-      </div>
+    <div id="thumbs" style="display:flex;gap:12px;margin-top:12px;overflow-x:auto;">
+      <button data-src="videos/emp-protection.mp4" style="border:0;background:transparent;padding:0;cursor:pointer;">
+        <img src="videos/thumb-emp.jpg" alt="EMP" style="width:160px;border-radius:6px;display:block">
+      </button>
 
-      <!-- card 2 -->
-      <div style="min-width:320px;flex-shrink:0;scroll-snap-align:start;">
-        <video controls width="320" height="180" style="width:100%;border-radius:8px;">
-          <source src="videos/food-preservation.mp4" type="video/mp4">
-        </video>
-        <strong style="display:block;margin-top:8px">Food Preservation</strong>
-        <small style="color:#bbb">How-to guide</small>
-      </div>
+      <button data-src="videos/food-preservation.mp4" style="border:0;background:transparent;padding:0;cursor:pointer;">
+        <img src="videos/thumb-food.jpg" alt="Food" style="width:160px;border-radius:6px;display:block">
+      </button>
 
-      <!-- add more cards as needed -->
+      <button data-src="videos/barter-marketplace.mp4" style="border:0;background:transparent;padding:0;cursor:pointer;">
+        <img src="videos/thumb-market.jpg" alt="Market" style="width:160px;border-radius:6px;display:block">
+      </button>
     </div>
   </div>
 </section>
+
+<script>
+  // swap featured video when a thumbnail/button is clicked
+  document.getElementById('thumbs').addEventListener('click', function(e){
+    const btn = e.target.closest('button[data-src]');
+    if(!btn) return;
+    const src = btn.getAttribute('data-src');
+    const vid = document.getElementById('featured');
+    // remember playback time & paused state optionally
+    vid.pause();
+    vid.querySelector('source').src = src;
+    vid.load();
+    vid.play().catch(()=>{}); // autoplay may be blocked unless user previously interacted
+  });
+</script>
+
 
