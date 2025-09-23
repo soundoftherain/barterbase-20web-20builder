@@ -11,6 +11,48 @@
 
   <body class="dark">
     <div id="root"></div>
+    <section id="showcase" style="background:#0b0f12;color:#fff;padding:60px 20px;font-family:system-ui,Arial;">
+  <div style="max-width:1000px;margin:0 auto;">
+    <h2 style="font-size:32px;margin-bottom:20px;text-align:center;">Product Videos</h2>
+    <p style="text-align:center;max-width:700px;margin:0 auto 40px;">
+      See our products in action — from EMP protection to food preservation. Each video is designed to educate and 
+      introduce you to our mission of preparedness.
+    </p>
+
+    <!-- Horizontal video slider -->
+    <div style="display:flex;overflow-x:auto;gap:20px;scroll-snap-type:x mandatory;padding-bottom:10px;scrollbar-width:none;">
+      
+      <!-- Video card -->
+      <div style="min-width:340px;flex-shrink:0;scroll-snap-align:start;background:#1a1f24;border-radius:12px;padding:15px;box-shadow:0 4px 12px rgba(0,0,0,0.6);">
+        <video width="310" height="180" controls style="border-radius:8px;">
+          <source src="videos/emp-protection.mp4" type="video/mp4" />
+        </video>
+        <h3 style="margin:12px 0 6px;font-size:18px;">EMP Protection</h3>
+        <p style="font-size:14px;color:#bbb;">Protect your devices from solar flares and EMP threats with our first product line.</p>
+      </div>
+
+      <!-- Video card -->
+      <div style="min-width:340px;flex-shrink:0;scroll-snap-align:start;background:#1a1f24;border-radius:12px;padding:15px;box-shadow:0 4px 12px rgba(0,0,0,0.6);">
+        <video width="310" height="180" controls style="border-radius:8px;">
+          <source src="videos/food-preservation.mp4" type="video/mp4" />
+        </video>
+        <h3 style="margin:12px 0 6px;font-size:18px;">Food Preservation</h3>
+        <p style="font-size:14px;color:#bbb;">Learn long-term food storage and preparation methods for community resilience.</p>
+      </div>
+
+      <!-- Video card -->
+      <div style="min-width:340px;flex-shrink:0;scroll-snap-align:start;background:#1a1f24;border-radius:12px;padding:15px;box-shadow:0 4px 12px rgba(0,0,0,0.6);">
+        <video width="310" height="180" controls style="border-radius:8px;">
+          <source src="videos/barter-marketplace.mp4" type="video/mp4" />
+        </video>
+        <h3 style="margin:12px 0 6px;font-size:18px;">Barter Marketplace</h3>
+        <p style="font-size:14px;color:#bbb;">Explore how our online marketplace brings barter, trade, and preparedness together.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
   </body>
 </html>
