@@ -42,3 +42,253 @@
       We’re building a community that educates, prepares, and rises together. Now is the time to put our heads down and build the foundation. Much love.
     </p>
   </section>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>BarterBase — Plasma Background</title>
+<style>
+  /* Basic page reset */
+  html,body { height:100%; margin:0; background:#000; }
+  body { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color:#ddd; }
+
+  /* Canvas covers the whole screen */
+  #plasmacanvas {
+    position: fixed;
+    inset: 0;              /* top:0; right:0; bottom:0; left:0 */
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: -1;           /* behind the content */
+    background: #000;      /* fallback */
+  }
+
+  /* Page content centered so you can show pitch info */
+  .page {
+    min-height:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    text-align:center;
+    padding:32px;
+    box-sizing:border-box;
+  }
+
+  h1 { margin:0; color: #e6e3ff; text-shadow:0 6px 20px rgba(80,30,150,0.35); font-weight:700; font-size:2.4rem; }
+  p { margin:0; color: #cfc9ff; opacity:0.9; max-width:760px; }
+  .cta {
+    margin-top:18px;
+    background: linear-gradient(90deg,#7b5cff, #b48cff33);
+    color:white;
+    padding:12px 20px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:600;
+    box-shadow: 0 8px 24px rgba(120,60,200,0.18);
+  }
+  /* Small control panel */
+  .controls {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    background: rgba(0,0,0,0.45);
+    border: 1px solid rgba(255,255,255,0.04);
+    padding:10px;
+    border-radius:10px;
+    color:#ddd;
+    font-size:13px;
+    backdrop-filter: blur(6px);
+  }
+  .controls label { display:block; margin:6px 0 4px; font-size:12px; color:#ddd; opacity:0.9 }
+  .controls input[type=range] { width:140px; }
+  /* small screens reduce fancy text size */
+  @media (max-width:600px){
+    h1{font-size:1.6rem}
+    .controls{right:8px;bottom:8px}
+  }
+</style>
+</head>
+<body>
+<canvas id="plasmacanvas" aria-hidden="true"></canvas>
+
+<div class="page" role="main">
+  <h1>BarterBase</h1>
+  <p>Live demo background — animated plasma waves in purple over deep black. Use this for your MVP landing page to create a high-tech, electromagnetic vibe.</p>
+  <a class="cta" href="#">View Demo</a>
+</div>
+
+<div class="controls" aria-hidden="false">
+  <label>Speed <span id="speedVal">1.0</span></label>
+  <input id="speed" type="range" min="0.1" max="3" step="0.05" value="1.0">
+  <label>Intensity <span id="intVal">1.0</span></label>
+  <input id="intensity" type="range" min="0.2" max="2.5" step="0.05" value="1.0">
+</div>
+
+<script>
+/*
+  Plasma / electromagnetic wave canvas
+  - Uses simple combined sine fields for a plasma look
+  - Maps the computed value to purple/black glow
+  - Optimized by sampling at pixel level in an ImageData buffer
+  - Scales with devicePixelRatio for sharpness
+*/
+
+(() => {
+  const canvas = document.getElementById('plasmacanvas');
+  const ctx = canvas.getContext('2d', { alpha: true });
+  let DPR = Math.max(1, window.devicePixelRatio || 1);
+
+  // Controls
+  const speedRange = document.getElementById('speed');
+  const intensityRange = document.getElementById('intensity');
+  const speedVal = document.getElementById('speedVal');
+  const intVal = document.getElementById('intVal');
+
+  speedRange.addEventListener('input', () => speedVal.textContent = parseFloat(speedRange.value).toFixed(2));
+  intensityRange.addEventListener('input', () => intVal.textContent = parseFloat(intensityRange.value).toFixed(2));
+
+  // Resize to full viewport, respecting DPR but keep internal buffer reasonable for perf
+  function resize() {
+    DPR = Math.max(1, window.devicePixelRatio || 1);
+    // cap internal resolution to balance performance on mobile:
+    const cssW = Math.max(320, window.innerWidth);
+    const cssH = Math.max(240, window.innerHeight);
+    // target internal size inversely scaled if small device
+    let scale = DPR;
+    if (cssW < 700) scale = Math.min(DPR, 1.5); // mobile reduce
+    canvas.width = Math.round(cssW * scale);
+    canvas.height = Math.round(cssH * scale);
+    canvas.style.width = cssW + 'px';
+    canvas.style.height = cssH + 'px';
+    ctx.imageSmoothingEnabled = true;
+  }
+
+  // color mapping: map value v in [0,1] to purple-black glow
+  function mapToRGBA(v, glow = 1.0) {
+    // define a purple base: hue ~265, saturation high, lightness varies
+    // we'll build a subtle purple -> cyan plasma and mix with black
+    // More purple at highs, deep black at lows
+    // Use an additive glow by scaling color components
+    const gamma = 1.1;
+    const vv = Math.max(0, Math.min(1, Math.pow(v, gamma)));
+    // purple RGB base
+    const pR = 150, pG = 85, pB = 255; // bright purple
+    // cyan-ish accent
+    const cR = 60, cG = 200, cB = 255;
+    // mix based on vv
+    const mix = vv;
+    const r = Math.round((pR * mix + cR * (1 - mix)) * glow);
+    const g = Math.round((pG * mix + cG * (1 - mix)) * glow);
+    const b = Math.round((pB * mix + cB * (1 - mix)) * glow);
+    // alpha controls visibility
+    const a = Math.min(255, Math.round(220 * vv + 35));
+    return [r, g, b, a];
+  }
+
+  // plasma function: combine sines for waves
+  function plasmaAt(x, y, t, w, h) {
+    // normalize coordinates
+    const nx = x / w, ny = y / h;
+    // several layers:
+    const v1 = Math.sin((nx * 10 + t * 1.1) * Math.PI * 2);
+    const v2 = Math.sin((ny * 8 - t * 0.9) * Math.PI * 2);
+    const v3 = Math.sin(((nx + ny) * 6 + Math.sin(t * 0.6) * 2) * Math.PI);
+    const cx = Math.sin(Math.hypot(nx - 0.5, ny - 0.5) * 6 - t * 0.8);
+    // combine
+    const combined = (v1 + v2 + v3 + cx) / 4; // roughly -1..1
+    return (combined + 1) * 0.5; // map to 0..1
+  }
+
+  // main animation loop
+  let last = performance.now();
+  let acc = 0;
+
+  function frame(now) {
+    const elapsed = (now - last) / 1000;
+    last = now;
+    acc += elapsed;
+
+    const w = canvas.width;
+    const h = canvas.height;
+    const speed = parseFloat(speedRange.value) || 1.0;
+    const intensity = parseFloat(intensityRange.value) || 1.0;
+    const t = acc * speed;
+
+    // create ImageData and write pixels
+    const image = ctx.createImageData(w, h);
+    const data = image.data;
+
+    // To reduce CPU on big screens, we can sample at a stride and fill blocks.
+    // But to keep it simple and still reasonable, we'll scan every pixel.
+    // If performance is poor, reduce resolution by sampling less.
+    const glow = 0.9 + intensity * 0.6;
+
+    // iterate
+    let idx = 0;
+    for (let y = 0; y < h; y++) {
+      for (let x = 0; x < w; x++) {
+        // sample coordinates at a lower frequency to get smooth waves
+        // small blur by sampling neighboring coords is omitted for perf
+        const v = plasmaAt(x, y, t, w, h);
+        // boost central intensity for electromagnetic 'hotspots'
+        const cx = (1 - Math.hypot((x / w) - 0.5, (y / h) - 0.5) * 1.8);
+        const v2 = Math.min(1, Math.max(0, v + cx * 0.15));
+        const [r, g, b, a] = mapToRGBA(v2, glow);
+        data[idx++] = r;
+        data[idx++] = g;
+        data[idx++] = b;
+        data[idx++] = a;
+      }
+    }
+
+    // draw with slight globalComposite to give glow feel
+    ctx.putImageData(image, 0, 0);
+
+    // optional subtle overlay radial vignette for depth
+    ctx.globalCompositeOperation = 'multiply';
+    const grad = ctx.createRadialGradient(w/2, h/2, Math.min(w,h)/6, w/2, h/2, Math.max(w,h)/1.2);
+    grad.addColorStop(0, 'rgba(255,255,255,0.02)');
+    grad.addColorStop(0.6, 'rgba(0,0,0,0.15)');
+    grad.addColorStop(1, 'rgba(0,0,0,0.5)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0,0,w,h);
+    ctx.globalCompositeOperation = 'source-over';
+
+    // schedule next frame
+    requestAnimationFrame(frame);
+  }
+
+  // initial resize and start
+  resize();
+  window.addEventListener('resize', () => {
+    // small debounce
+    clearTimeout(window._plasmaResizeTimer);
+    window._plasmaResizeTimer = setTimeout(resize, 120);
+  });
+
+  // If the canvas is too heavy on small devices, we can disable animation.
+  function shouldDisable() {
+    // simple heuristic: old devices or tiny screens
+    return (window.innerWidth < 360 && (navigator.userAgent.includes('Android') || navigator.userAgent.includes('iPhone')));
+  }
+
+  if (!ctx) {
+    // fallback: dark purple gradient background
+    canvas.style.display = 'none';
+    document.body.style.background = 'linear-gradient(180deg,#0b0010,#15001b 40%,#0b0010 100%)';
+  } else if (shouldDisable()) {
+    // show a static gradient + very slow parallax
+    ctx.fillStyle = '#020006';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    // no continuous animation
+  } else {
+    requestAnimationFrame(frame);
+  }
+
+})();
+</script>
+</body>
+</html>
